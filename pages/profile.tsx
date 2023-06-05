@@ -40,6 +40,8 @@ const client = create({
   },
 });
 
+let baseUrl = 'http://ec2-44-198-54-124.compute-1.amazonaws.com:3000/v1';
+const API_KEY = '8d3c6697-0ba1-42d4-b5c7-6727c04adce7';
 export default function Profile() {
   const wallet = useWallet();
   const [userName, setUserName] = useState<string>(null);
@@ -80,7 +82,7 @@ export default function Profile() {
         });
         console.log(orbisImageUploadResponse);
         const imageUploadResponse = await axios.patch(
-          `https://proto-api.onrender.com/users/${_id}`,
+          `${baseUrl}/users/${_id}`,
           {
             profile_picture: {
               hash: newProfilePic.hash,
@@ -117,7 +119,7 @@ export default function Profile() {
     const updateUserName = async () => {
       try {
         const res = await axios.patch(
-          `https://proto-api.onrender.com/users/${_id}`,
+          `http://ec2-44-198-54-124.compute-1.amazonaws.com:3000/users/${_id}`,
           {
             name: newUserName,
           }
